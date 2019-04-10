@@ -1,5 +1,5 @@
 <?php
-$DATABASE_URL = parse_url('bb567ab8e12dcc5d9ba2368523eabd708df8be10fdbf3727a6ce53330911b004@ec2-54-225-95-183.compute-1.amazonaws.com');
+$DATABASE_URL = parse_url('olxcymkjzxamdn:bb567ab8e12dcc5d9ba2368523eabd708df8be10fdbf3727a6ce53330911b004@ec2-54-225-95-183.compute-1.amazonaws.com:5432/dfj53euliur1pp');
 
 return [
 
