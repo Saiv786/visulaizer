@@ -12,7 +12,7 @@ class UsersController extends Controller {
 	 */
 	public function index() {
 		//
-		return view('user.home');
+		return view('User.home');
 	}
 
 	/**
