@@ -21,4 +21,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource("compiler", "CompilerController");
 Route::resource("tutorials", "TutorialController");
 Route::resource("/quiz", "QuizController");
-Route::resource("users", "RegistrationController");
+Route::resource("users", "UsersController");
