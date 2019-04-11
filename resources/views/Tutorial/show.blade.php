@@ -61,7 +61,8 @@
  @extends('layouts.app')
 @section('content')
     <!-- Begin Page Content -->
-    <div class="container-fluid">
+    <div class="container">
+    {{-- <div class="container-fluid"> --}}
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Tutorials</h1>
@@ -117,7 +118,7 @@
 
     </div>
 
-    <style>
+   {{--  <style>
         input[type=text], select, textarea {
             width: 100%; /* Full width */
             padding: 12px; /* Some padding */
@@ -150,6 +151,6 @@
             background-color: #f2f2f2;
             padding: 20px;
         }
-    </style>
+    </style> --}}
 
 @endsection

@@ -10,7 +10,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ URL::asset('js/app.js') }}" ></script>
+    <script src="{{ asset('js/app.js') }}" ></script>
     {{-- <script  src="{{URL::asset('js/compiler/index.js')}}"></script> --}}
     <script type="text/javascript" src="{{URL::asset('js/vendor/modernizr-2.8.3.min.js')}}"></script>
 
@@ -64,13 +64,13 @@
 
 
                         <li class="nav-item">
-                            <a class="nav-link collapsed" href="{{ url('tutorials') }}" >
+                            <a class="nav-link collapsed" href="{{ url('tutorials') }}" data-toggle="collapse" data-target="#collapsetutorial" aria-expanded="true" aria-controls="collapsetutorial">
                                 <i class="fas fa-fw fa-list"></i>
                                 <span>Tutorials</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link collapsed" href="{{ url('quiz') }}" >
+                            <a class="nav-link collapsed" href="{{ url('quiz') }}" data-toggle="collapse" data-target="#collapsequiz" aria-expanded="true" aria-controls="collapsequiz">
                                 <i class="fas fa-fw fa-list"></i>
                                 <span>Quiz</span>
                             </a>
