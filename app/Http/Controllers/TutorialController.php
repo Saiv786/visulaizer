@@ -62,12 +62,11 @@ class TutorialController extends Controller {
 	 */
 	public function show(Tutorial $tutorial) {
 		//
-		// \Log::debug($tutorial);
-		if (Auth::user()) {
-			return view('Tutorial.user_show', ['tutorial' => $tutorial]);
-
-		} else {
+		if (Auth::check() && Auth::user()->isAdmin()) {
+			\Log::debug(Auth::user()->isAdmin());
 			return view('Tutorial.view', ['tutorial' => $tutorial]);
+		} else {
+			return view('Tutorial.user_show', ['tutorial' => $tutorial]);
 		}
 
 	}
@@ -81,7 +80,12 @@ class TutorialController extends Controller {
 	public function edit(Tutorial $tutorial) {
 		//
 		// info($tutorial);
-		return view('Tutorial.edit', ['tutorial' => $tutorial]);
+		if (Auth::check() && Auth::user()->isAdmin()) {
+
+			return view('Tutorial.edit', ['tutorial' => $tutorial]);
+		} else {
+			return view('Tutorial.user_show', ['tutorial' => $tutorial]);
+		}
 
 	}
 

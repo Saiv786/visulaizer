@@ -56,11 +56,11 @@
         }
 
         /* Add a background color and some padding around the form */
-        .container {
+        /*.container {
             border-radius: 5px;
             background-color: #f2f2f2;
             padding: 20px;
-        }
+        }*/
     </style>
 
 @endsection
