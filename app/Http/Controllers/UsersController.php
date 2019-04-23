@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller {
 	/**
@@ -12,7 +13,7 @@ class UsersController extends Controller {
 	 */
 	public function index() {
 		//
-		return view('User.home');
+		return view('User.app');
 	}
 
 	/**
@@ -41,7 +42,10 @@ class UsersController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function show($id) {
-		//
+		if (Auth::check()) {
+			$user = Auth::user();
+			return view('auth.settings', ['user' => $user]);
+		}
 	}
 
 	/**

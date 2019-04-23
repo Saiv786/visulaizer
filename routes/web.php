@@ -18,7 +18,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/tutorials/tryit/{tryit_code}', 'TutorialController@tryit');
 Route::resource("compiler", "CompilerController");
 Route::resource("tutorials", "TutorialController");
+
 Route::resource("/quiz", "QuizController");
 Route::resource("users", "UsersController");
+Route::resource("/user_tutorials", "UserTutorialsController");

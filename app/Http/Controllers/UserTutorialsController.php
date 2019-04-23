@@ -6,7 +6,7 @@ use App\Tutorial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class TutorialController extends Controller {
+class UserTutorialsController extends Controller {
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -17,12 +17,7 @@ class TutorialController extends Controller {
 		$tutorials = Tutorial::all();
 		// info($tutorials);
 		// return view('Tutorial.show', ['tutorials' => $tutorials]);
-		if (Auth::check() && Auth::user()->isAdmin()) {
-
-			return view('Tutorial.index', compact('tutorials'));
-		} else {
-			return view('Tutorial.user_index', ['tutorials' => $tutorials]);
-		}
+		return view('Tutorial.user_show', compact('tutorials'));
 	}
 
 	/**
@@ -32,7 +27,7 @@ class TutorialController extends Controller {
 	 */
 	public function create() {
 		//
-		return view('Tutorial.create');
+		return view('Tutorial.index');
 	}
 
 	/**
@@ -71,11 +66,12 @@ class TutorialController extends Controller {
 
 			return view('Tutorial.view', ['tutorial' => $tutorial]);
 		} else {
-			return view('Tutorial.user_view', ['tutorial' => $tutorial]);
+			return view('Tutorial.user_show', ['tutorial' => $tutorial]);
 		}
 
 	}
 	public function tryit($tryit_code) {
+		\Log::debug($tryit_code);
 		$compiler['output'] = "";
 		$compiler['code'] = $tryit_code;
 
@@ -109,13 +105,7 @@ class TutorialController extends Controller {
 	 */
 	public function update(Request $request, Tutorial $tutorial) {
 		//
-		\Log::debug($tutorial);
-		$tutorial->name = $request->get('topic');
-		$tutorial->description = $request->get('description');
-		$tutorial->tryit_code = $request->get('code');
-		$tutorial->save();
 
-		return redirect('/tutorials')->with('success', 'Tutorial has been changed');
 	}
 
 	/**

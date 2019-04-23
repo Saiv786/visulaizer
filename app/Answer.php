@@ -3,9 +3,9 @@
 namespace App;
 use Illuminate\Database\Eloquent\Model;
 
-class quiz extends Model {
+class Answer extends Model {
 
-	public $table = "quizz";
+	// public $table = "answers";
 	protected $dates = ['deleted_at'];
 
 	public $fillable = [
@@ -19,7 +19,7 @@ class quiz extends Model {
 	protected $casts = [
 		"answer" => "string",
 		"description" => "string",
-		"quiz_id" => "int",
+
 		"is_true" => "boolean",
 	];
 

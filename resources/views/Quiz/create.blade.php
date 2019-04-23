@@ -12,7 +12,7 @@
             @csrf
         <div class="container">
             <label for="Topic">Question</label>
-            <textarea id="code" name="code" placeholder="Write something.." style="height:200px"></textarea>
+            <textarea id="code" name="question" placeholder="Write something.." style="height:200px"></textarea>
 
 
             <label for="explain">Options</label>
@@ -22,7 +22,7 @@
             <input type="text" id="option 4" name="option4" placeholder="option 4">
 
             <label for="code">Answer</label>
-            <input type="text" id="topic" name="topic">
+            <input type="text" id="topic" name="ans">
 
             <input type="submit" value="Save">
             <input type="submit" value="Cancel">

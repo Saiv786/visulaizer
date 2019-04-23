@@ -43,7 +43,7 @@ class Quiz extends Model {
 	//-----------------------------------------
 
 	public function answers() {
-		return $this->hasMany(\App\Answer::class, 'quiz_id');
+		return $this->hasMany('\App\Answer', 'quiz_id');
 	}
 
 	//-----------------------------------------

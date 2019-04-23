@@ -9,7 +9,9 @@
         </div>
 
        <div class="container">
-            <form >
+            <form method="post" action="{{route('tutorials.update/{{ $tutorial->id }}')}}">
+            @csrf
+
 
                 <label for="Topic">Topic</label>
                 <input type="text" id="topic" name="topic" value={{$tutorial->name}} >

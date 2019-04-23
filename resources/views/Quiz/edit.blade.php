@@ -2,34 +2,43 @@
 @section('content')
     <!-- Begin Page Content -->
     <div class="container-fluid">
+
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Tutorials</h1>
-            <a href="{{ route('tutorials.create')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="button"></i> Create</a>
+            <h1 class="h3 mb-0 text-gray-800">Add Quiz Page</h1>
+            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
         </div>
-        <a href="/tutorials/tryit/{{$tutorial->tryit_code}}"> Try it Code</a>
-
-       <div class="container">
-            <form >
-
-                <label for="Topic">Topic</label>
-                <input type="text" id="topic" name="topic" value="{{$tutorial->name}}" disabled="">
-
-                <label for="explain">Explain </label>
-                <textarea id="description" name="description"  disabled="" style="height:200px">{{$tutorial->description}}</textarea>
-
-                <label for="code">Practice Code</label>
-                <textarea id="code" name="code" disabled="" style="height:200px">{{$tutorial->tryit_code}}</textarea>
+        <form method="post" action="{{route('quiz.store')}}">
+            @csrf
+        <div class="container">
+            <label for="Topic">Question</label>
+            <textarea id="code" name="question" placeholder="Write something.." style="height:200px">{{ $quiz->question }}</textarea>
 
 
-                <input type="submit" value="Cancel">
+            <label for="explain">Options</label>
+            @foreach($quiz->answers as $ans)
+            <input type="text" id="option 1" name="option1" placeholder="option 1" value="{{ $ans->answer }}">
+            {{-- <input type="text" id="option 2" name="option2" placeholder="option 2">
+            <input type="text" id="option 3" name="option3" placeholder="option 3">
+            <input type="text" id="option 4" name="option4" placeholder="option 4">
+ --}}
+ @endforeach
+            @foreach($quiz->answers as $ans)
+ @if( $ans->is_true )
+            <label for="code">Answer</label>
+            <input type="text" id="topic" name="ans" value="{{ $ans->answer }}">
+      @endif
+ @endforeach
 
-            </form>
+            <input type="submit" value="Save">
+            <input type="submit" value="Cancel">
+
+
         </div>
 
-    </div>
-
+    </form>
     <style>
+
         input[type=text], select, textarea {
             width: 100%; /* Full width */
             padding: 12px; /* Some padding */
@@ -63,5 +72,5 @@
             padding: 20px;
         }*/
     </style>
-
+    </div>
 @endsection
