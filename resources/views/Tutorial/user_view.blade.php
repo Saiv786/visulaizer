@@ -69,7 +69,8 @@ body,html{
 <div class="container">
 
 <h1>{{ $tutorial->name }}</h1>
-<p>{{ $tutorial->description }}</p>
+{{ $tutorial->name }}
+{{-- <p>{{ $tutorial->description }}</p> --}}
 <a href="/tutorials/tryit/{{$tutorial->tryit_code}}" class="btn btn-primary a-btn-slide-text">
                <span><strong><i class="fa fa-edit"></i> Try It</strong></span>
               </a>
@@ -157,9 +158,7 @@ body,html{
 
 {{-- @extends('User.app')
 @section('content')
-    <!-- Begin Page Content -->
     <div class="container-fluid">
-        <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Tutorials</h1>
             <a href="{{ route('tutorials.create')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="button"></i> Create</a>

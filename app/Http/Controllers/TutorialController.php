@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Tutorial;
+use Artisan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -43,19 +44,45 @@ class TutorialController extends Controller {
 	 */
 	public function store(Request $request) {
 
-//		$request->validate([
-		//			'name' => 'required',
-		//			'description' => 'required',
-		//			'code' => 'required',
-		//		]);
-		//
+		// $request->validate([
+		// 	'name' => 'required',
+		// 	'description' => 'required',
+		// 	'code' => 'required',
+		// ]);
+
+		$detail = $request->get('description');
+
+		$dom = new \domdocument();
+		$dom->loadHtml($detail, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+		$images = $dom->getelementsbytagname('img');
+
+		//loop over img elements, decode their base64 src and save them to public folder,
+		//and then replace base64 src with stored image URL.
+		foreach ($images as $k => $img) {
+			$data = $img->getattribute('src');
+
+			list($type, $data) = explode(';', $data);
+			list(, $data) = explode(',', $data);
+
+			$data = base64_decode($data);
+			$image_name = time() . $k . '.png';
+			$path = public_path() . '/' . $image_name;
+
+			file_put_contents($path, $data);
+
+			$img->removeattribute('src');
+			$img->setattribute('src', $image_name);
+		}
+
+		$detail = $dom->savehtml();
+
 		$tutorial = new Tutorial([
 			'name' => $request->get('topic'),
-			'description' => $request->get('description'),
+			'description' => $detail,
 			'tryit_code' => $request->get('code'),
 		]);
 		$tutorial->save();
-		INFO($request);
+		// INFO($request);
 		return redirect('/tutorials')->with('success', 'Tutorial has been added');
 	}
 
@@ -67,6 +94,7 @@ class TutorialController extends Controller {
 	 */
 	public function show(Tutorial $tutorial) {
 		//
+		Artisan::call('view:clear');
 		if (Auth::check() && Auth::user()->isAdmin()) {
 
 			return view('Tutorial.view', ['tutorial' => $tutorial]);
@@ -90,12 +118,11 @@ class TutorialController extends Controller {
 	 */
 	public function edit(Tutorial $tutorial) {
 		//
-		// info($tutorial);
 		if (Auth::check() && Auth::user()->isAdmin()) {
 
-			return view('Tutorial.edit', ['tutorial' => $tutorial]);
+			return view('Tutorial.admin_edit', ['tutorial' => $tutorial]);
 		} else {
-			return view('Tutorial.user_show', ['tutorial' => $tutorial]);
+			return view('Tutorial.user_view', ['tutorial' => $tutorial]);
 		}
 
 	}
@@ -109,7 +136,7 @@ class TutorialController extends Controller {
 	 */
 	public function update(Request $request, Tutorial $tutorial) {
 		//
-		\Log::debug($tutorial);
+
 		$tutorial->name = $request->get('topic');
 		$tutorial->description = $request->get('description');
 		$tutorial->tryit_code = $request->get('code');

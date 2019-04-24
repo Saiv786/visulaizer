@@ -16,7 +16,7 @@
 
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js"></script> --}}
 
-
+@yield('head')
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.3/ace.js"></script>
   <script src="https://use.fontawesome.com/1bc4308c1f.js"></script>
   <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>

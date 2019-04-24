@@ -4,24 +4,26 @@
     <div class="container-fluid">
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Tutorials</h1>
-            <a href="{{ route('tutorials.create')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="button"></i> Create</a>
+            <h1 class="h3 mb-0 text-gray-800">Tutorial</h1>
+
         </div>
-        {{-- <a href="/tutorials/tryit/{{$tutorial->tryit_code}}"> Try it Code</a> --}}
 
        <div class="container">
-            <form >
+            <form method="post" action="{{ route('tutorials.update',$tutorial->id)}}">
+            @csrf
+            @method('Patch')
+
 
                 <label for="Topic">Topic</label>
-                <input type="text" id="topic" name="topic" value="{{$tutorial->name}}" disabled="">
+                <input type="text" id="topic" name="topic" value={{$tutorial->name}} >
 
                 <label for="explain">Explain </label>
-                <textarea id="description" name="description"  disabled="" style="height:200px">{{$tutorial->description}}</textarea>
+                <textarea id="description" name="description"   style="height:200px">{{$tutorial->description}}</textarea>
 
                 <label for="code">Practice Code</label>
-                <textarea id="code" name="code" disabled="" style="height:200px">{{$tutorial->tryit_code}}</textarea>
+                <textarea id="code" name="code"  style="height:200px">{{$tutorial->tryit_code}}</textarea>
 
-
+                <input type="submit" value="Save">
                 <input type="submit" value="Cancel">
 
             </form>

@@ -75,7 +75,7 @@
 
                     <thead class="thead-inverse">
                       <tr>
-                        <th>Topicss</th>
+                        <th>Topics</th>
                         <th>Active</th>
                         <th>Actions</th>
                       </tr>
